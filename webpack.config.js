@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var htmlplugin = require('html-webpack-plugin');
+const { json } = require('express');
 
 const VENDOR_LIBS = [
   'react',
@@ -41,6 +42,9 @@ module.exports = {
     }),
     new htmlplugin({
       template: './index.html',
+    }),
+    new webpack.DefinePlugin({
+      'process.end.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
   ],
 };
